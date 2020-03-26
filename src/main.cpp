@@ -30,13 +30,18 @@ int main(int argc, char **argv)
   cout << endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
+  LZespolona Odp;
   
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
     cout << "Podaj wynik operacji: ";
     wyswietl(WyrZ_PytanieTestowe);
     cout << "Twoja odpowiedz: ";
-    wyswietl(oblicz(WyrZ_PytanieTestowe));
-    //    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
+    cin >> Odp;
+    if(Odp==oblicz(WyrZ_PytanieTestowe)){
+      cout<<"Dobrze!"<<endl;
+    }else{
+      cout<<"Zle!"<<endl;
+      }
   }
 
   

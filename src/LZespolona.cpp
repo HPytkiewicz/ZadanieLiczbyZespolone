@@ -124,6 +124,14 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2){
   return Wynik;
 }
 
+bool operator == (LZespolona Skl1, LZespolona Skl2){
+  if(Skl1.re==Skl2.re && Skl1.im==Skl2.im)
+    return true;
+  else
+    return false;
+
+}
+
 /*!
  * Funkcja przydziela strukturze wartosci
  * Argumenty:
@@ -132,7 +140,6 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2){
  * Zwraca:
  *    Liczbe zespolona z podanymi wartosciami
  */
-
 
 LZespolona utworz(double l1, double l2){
   LZespolona Wynik;
@@ -149,14 +156,32 @@ LZespolona utworz(double l1, double l2){
  *    Skl1 - liczba zespolona ktora ta funkcja wypisze
  */
 
-
-void wyswietl(LZespolona Skl1){
+std::ostream & operator <<(std::ostream & strm,LZespolona Skl1){
   using namespace std;
 
-  cout<< '(' << Skl1.re << showpos << Skl1.im << 'i' << ')' << endl << noshowpos;
+  strm<< '(' << Skl1.re << showpos << Skl1.im << 'i' <<  ')' << noshowpos << endl;
+  return strm;
+  
+}
+std::istream & operator >>(std::istream & strm,LZespolona & Skl1){
+  using namespace std;
+  char znak;
+
+  strm >> znak;
+  if(znak!='(')
+    strm.setstate(std::ios::failbit);
+  strm >> Skl1.re >> Skl1.im >> znak;
+  if(znak!='i')
+    strm.setstate(std::ios::failbit);
+  strm>>znak;
+  if(znak!=')')
+    strm.setstate(std::ios::failbit);
+  return strm;
 }
 
-void wczytaj(
+
+
+
 
 
 
