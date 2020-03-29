@@ -4,6 +4,11 @@
 
 #include "WyrazenieZesp.hh"
 
+struct Statystyka {
+  double poprawna;
+  double bledna;
+  double procent;
+};
 
 /*
  * Modeluje pojecie baze testu z zestawem pytan w tablicy

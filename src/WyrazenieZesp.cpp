@@ -9,31 +9,55 @@ using namespace std;
  *    WyrZ- Wyrazenie ktore zostanie wyswietlone
  */
 
-void wyswietl(WyrazenieZesp WyrZ){
+std::ostream & operator <<(std::ostream & strm, WyrazenieZesp WyrZ){
   using namespace std;
-  
-  cout << '(' << WyrZ.Arg1.re << showpos<< WyrZ.Arg1.im <<'i'<< noshowpos << ')';
-switch(WyrZ.Op){
- case Op_Dodaj:
-   cout<<"+";
+  strm << WyrZ.Arg1;
+  switch(WyrZ.Op){
+   case Op_Dodaj:
+   strm<<"+";
    break;
  case Op_Odejmij:
-   cout<<"-";
+   strm<<"-";
    break;
  case Op_Mnoz:
-   cout<<"*";
+   strm<<"*";
    break;
  case Op_Dziel:
-   cout<<"/";
+   strm<<"/";
    break;
  default:
-   cout<< "Error"<<endl;
+   strm.setstate(std::ios::failbit);
    break;
- }
-   cout<< '(' << WyrZ.Arg2.re << showpos<< WyrZ.Arg2.im <<'i'<< noshowpos << ')';
-   cout<< endl;
+  }
+  strm << WyrZ.Arg2;
+return strm;
 }
 
+std::istream & operator >>(std::istream & strm, WyrazenieZesp & WyrZ){
+  using namespace std;
+  char znak;
+  strm >> WyrZ.Arg1;
+  strm >> znak;
+  switch(znak){
+  case '+':
+    WyrZ.Op= Op_Dodaj;
+    break;
+  case '-':
+    WyrZ.Op= Op_Odejmij;
+    break;
+  case '*':
+    WyrZ.Op= Op_Mnoz;
+    break;
+  case '/':
+    WyrZ.Op= Op_Dziel;
+    break;
+  default:
+    strm.setstate(std::ios::failbit);
+    break;
+  }
+  strm >> WyrZ.Arg1;
+  return strm;
+}
 /*!
  * Funkcja obliczajaca wartosc wyrazenia zespolonego
  * Argumenty:

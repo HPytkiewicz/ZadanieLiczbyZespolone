@@ -159,7 +159,7 @@ LZespolona utworz(double l1, double l2){
 std::ostream & operator <<(std::ostream & strm,LZespolona Skl1){
   using namespace std;
 
-  strm<< '(' << Skl1.re << showpos << Skl1.im << 'i' <<  ')' << noshowpos << endl;
+  strm<< '(' << Skl1.re << showpos << Skl1.im << 'i' <<  ')' << noshowpos;
   return strm;
   
 }
